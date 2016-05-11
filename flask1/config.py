@@ -10,7 +10,9 @@ class Config:
         pass
 class DevelopmentConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI="mysql+pymysql://root:abc123@127.0.0.1:3306/flask1?charset=utf8"
+#    SQLALCHEMY_DATABASE_URI="mysql+pymysql://root:abc123@127.0.0.1:3306/flask1?charset=utf8"
+    SQLALCHEMY_DATABASE_URI = "mysql://root:abc123?@127.0.0.1:3306/MangeLinux?charset=utf8"
+
 config = {
     'default':DevelopmentConfig
 }
