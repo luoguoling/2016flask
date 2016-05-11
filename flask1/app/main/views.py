@@ -6,7 +6,9 @@ from .. import db
 from ..models import User,Alticle
 @main.route('/')
 def show_entries():
-    return render_template('main/index.html')
+    username = session.get('username')
+    print username
+    return render_template('main/index.html',username=username)
 @main.route('/add', methods=['POST'])
 def add_entry():
     if not session.get('logged_in'):
@@ -28,6 +30,7 @@ def login():
         else:
             session['logged_in'] = True
             session['username'] = request.form['username']
+            print session['username']
             flash('You were logged in')
             return redirect(url_for('main.show_entries'))
     return render_template('main/login.html', error=error)
@@ -35,4 +38,5 @@ def login():
 def logout():
     session.pop('logged_in', None)
     flash('You were logged out')
-    return redirect(url_for('main.show_entries'))
+#    return redirect(url_for('main.show_entries'))
+    return render_template('main/login.html')
